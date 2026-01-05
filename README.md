@@ -1,5 +1,5 @@
-Ensemble Machine Learning Model for Phishing Website Detection
-     A high-performance cybersecurity solution that uses Machine Learning to identify phishing URLs in real-time. This project analyzes URL structures to protect users from identity theft and financial fraud.
+Ensemble Machine Learning Model for Phishing Website Detection :
+A high-performance cybersecurity solution that uses Machine Learning to identify phishing URLs in real-time. This project analyzes URL structures to protect users from identity theft and financial fraud.
 
 Why This Project?
 Phishing is one of the most common cyber threats. This project moves beyond simple "blacklists" by using Machine learning to predict if a URL is malicious based on its characteristics (like length, special symbols, and redirection).
