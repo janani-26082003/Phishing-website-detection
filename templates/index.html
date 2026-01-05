@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Phishing URL Detector</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: url('{{ url_for("static", filename="phishingbg.png") }}') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            text-align: center;
+            width: 500px;
+            backdrop-filter: blur(10px);
+        }
+
+        input[type="text"] {
+            padding: 12px;
+            width: 70%;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 12px 20px;
+            background-color: #2563eb;
+            border: none;
+            color: white;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .result-box {
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .Legitimate {
+            background-color: #22c55e;
+        }
+
+        .Phishing {
+            background-color: #ef4444;
+        }
+
+        .bar-container {
+            background-color: #2d2d2d;
+            height: 25px;
+            width: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+
+        .bar-fill {
+            height: 100%;
+            line-height: 25px;
+            color: white;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .bar-legit {
+            background-color: #22c55e;
+        }
+
+        .bar-phish {
+            background-color: #ef4444;
+        }
+
+        .suggestion {
+            margin-top: 20px;
+            font-size: 16px;
+            font-style: italic;
+            color: #e5e5e5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Phishing URL Detector</h1>
+        <form method="POST" action="/predict">
+            <input type="text" name="url" placeholder="Enter a URL" required>
+            <button type="submit">Check URL</button>
+        </form>
+
+        {% if result %}
+            <div class="result-box {{ result }}">
+                Prediction: {{ result }}
+            </div>
+
+            <div class="bar-container">
+                <div class="bar-fill {% if result == 'Legitimate' %}bar-legit{% else %}bar-phish{% endif %}"
+                     style="width: {{ confidence }}%;">
+                    {{ confidence }}%
+                </div>
+            </div>
+
+            <div class="suggestion">
+                {{ suggestion }}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
